@@ -75,4 +75,54 @@ describe('Board', () => {
     render(<Board board={board} winningLine={winningLine} onDrop={() => {}} />);
     expect(document.querySelectorAll('.board__ball--winner')).toHaveLength(4);
   });
+
+  it('no dibuja la línea de victoria sin una línea ganadora', () => {
+    render(<Board board={createBoard()} winningLine={null} onDrop={() => {}} />);
+    expect(document.querySelector('.board__strike')).toBeNull();
+  });
+
+  it('tacha la línea ganadora con una línea que cruza el centro de cada bolita', () => {
+    const board = boardWith([
+      { row: ROWS - 1, col: 0, player: PLAYER_1 },
+      { row: ROWS - 1, col: 1, player: PLAYER_1 },
+      { row: ROWS - 1, col: 2, player: PLAYER_1 },
+      { row: ROWS - 1, col: 3, player: PLAYER_1 },
+    ]);
+    const winningLine = [
+      { row: ROWS - 1, col: 0 },
+      { row: ROWS - 1, col: 1 },
+      { row: ROWS - 1, col: 2 },
+      { row: ROWS - 1, col: 3 },
+    ];
+    render(<Board board={board} winningLine={winningLine} onDrop={() => {}} />);
+    const strike = document.querySelector('.board__strike');
+    const segment = strike.querySelector('line');
+    // horizontal por la fila inferior: y fijo en el centro (5.5) y x desde
+    // el borde de la primera bolita (0) hasta el borde de la última (4)
+    expect(segment.getAttribute('y1')).toBe('5.5');
+    expect(segment.getAttribute('y2')).toBe('5.5');
+    expect(segment.getAttribute('x1')).toBe('0');
+    expect(segment.getAttribute('x2')).toBe('4');
+  });
+
+  it('tacha una diagonal ganadora de extremo a extremo', () => {
+    const board = boardWith([
+      { row: 2, col: 0, player: PLAYER_1 },
+      { row: 3, col: 1, player: PLAYER_1 },
+      { row: 4, col: 2, player: PLAYER_1 },
+      { row: 5, col: 3, player: PLAYER_1 },
+    ]);
+    const winningLine = [
+      { row: 2, col: 0 },
+      { row: 3, col: 1 },
+      { row: 4, col: 2 },
+      { row: 5, col: 3 },
+    ];
+    render(<Board board={board} winningLine={winningLine} onDrop={() => {}} />);
+    const segment = document.querySelector('.board__strike line');
+    expect(segment.getAttribute('x1')).toBe('0');
+    expect(segment.getAttribute('y1')).toBe('2');
+    expect(segment.getAttribute('x2')).toBe('4');
+    expect(segment.getAttribute('y2')).toBe('6');
+  });
 });

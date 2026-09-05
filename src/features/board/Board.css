@@ -43,6 +43,25 @@
   mask-size: var(--cell) var(--cell);
 }
 
+/* Línea de victoria: tacha las bolitas ganadoras pasando por el centro.
+   Se dibuja sobre el panel frontal para verse de forma continua */
+.board__strike {
+  position: absolute;
+  inset: var(--frame);
+  z-index: 4;
+  width: calc(var(--cell) * 7);
+  height: calc(var(--cell) * 6);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.board__strike line {
+  stroke: var(--color-strike);
+  stroke-width: 0.18;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgb(255 255 255 / 0.55));
+}
+
 /* Botones invisibles por columna: reciben el clic para soltar la bolita.
    Se alinean con la cuadrícula de huecos (inset del marco) para que el
    área resaltada al pasar el cursor quede centrada en cada columna */
