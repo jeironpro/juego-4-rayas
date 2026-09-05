@@ -16,9 +16,6 @@ sutil. Todos los valores se materializan como _custom properties_ en
 | `--color-text-secondary` | `#a1a1aa`                 | Texto secundario (labels, ayudas)     |
 | `--color-border`         | `rgb(255 255 255 / 0.08)` | Bordes y divisores                    |
 | `--color-primary`        | `#4f8cff`                 | Acción principal (botón Jugar, foco)  |
-| `--color-success`        | `#22c55e`                 | Estados de éxito                      |
-| `--color-error`          | `#ef4444`                 | Estados de error / jugador 1          |
-| `--color-warning`        | `#f59e0b`                 | Estados de advertencia                |
 
 ### Tablero y bolitas
 
@@ -55,22 +52,22 @@ _media queries_ de `min-width` hacia pantallas mayores.
 
 ## Radios y sombras
 
-- Radios: `--radius-sm` (0.5rem), `--radius-md` (0.75rem), `--radius-lg` (1rem),
-  `--radius-full` (9999px, bolitas y pills).
-- Sombras: `--shadow-sm`, `--shadow-md`, `--shadow-lg` (negras con opacidad para fondo oscuro).
+- Radios: `--radius-md` (0.75rem), `--radius-lg` (1rem), `--radius-full` (9999px,
+  bolitas y pills).
+- Sombras: `--shadow-md`, `--shadow-lg` (negras con opacidad para fondo oscuro).
 - Foco visible: `--focus-ring` (anillo azul translúcido).
 
 ## Componentes base
 
 ### Button
 
-| Estado         | Apariencia                                                        |
-| -------------- | ----------------------------------------------------------------- |
-| Default        | Fondo `--color-primary`, texto blanco, radio `--radius-md`        |
-| Hover          | Fondo `--color-primary-hover`                                     |
-| Active         | Fondo `--color-primary-active`                                    |
-| Disabled       | Opacidad 0.5, cursor `not-allowed`                                |
-| Variante ghost | Superficie translúcida con borde, usada para acciones secundarias |
+| Estado             | Apariencia                                                    |
+| ------------------ | ------------------------------------------------------------- |
+| Default            | Fondo `--color-primary`, texto blanco, radio `--radius-md`    |
+| Hover              | Fondo `--color-primary-hover`                                 |
+| Active             | Fondo `--color-primary-active`                                |
+| Disabled           | Opacidad 0.5, cursor `not-allowed`                            |
+| Variante secondary | Fondo transparente con borde, usada para acciones secundarias |
 
 ### Scoreboard
 

@@ -1,15 +1,15 @@
 /* Fondo general con brillos sutiles estilo near.com */
 body {
-  min-height: 100vh;
-  background:
-    radial-gradient(60rem 40rem at 85% -10%, rgb(79 140 255 / 0.08), transparent 60%),
-    radial-gradient(50rem 35rem at -10% 110%, rgb(139 92 246 / 0.08), transparent 60%),
-    var(--color-bg);
+    min-height: 100vh;
+    background:
+        radial-gradient(60rem 40rem at 85% -10%, rgb(79 140 255 / 0.08), transparent 60%),
+        radial-gradient(50rem 35rem at -10% 110%, rgb(139 92 246 / 0.08), transparent 60%),
+        var(--color-bg);
 }
 
 #root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
