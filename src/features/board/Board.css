@@ -43,10 +43,12 @@
   mask-size: var(--cell) var(--cell);
 }
 
-/* Botones invisibles por columna: reciben el clic para soltar la bolita */
+/* Botones invisibles por columna: reciben el clic para soltar la bolita.
+   Se alinean con la cuadrícula de huecos (inset del marco) para que el
+   área resaltada al pasar el cursor quede centrada en cada columna */
 .board__columns {
   position: absolute;
-  inset: 0;
+  inset: var(--frame);
   z-index: 4;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
