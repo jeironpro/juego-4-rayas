@@ -1,0 +1,11 @@
+.app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.app__title {
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-primary);
+}
