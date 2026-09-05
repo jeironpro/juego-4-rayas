@@ -62,6 +62,37 @@ describe('bot', () => {
     expect(column).toBe(3);
   });
 
+  it('elige la jugada ganadora inmediata también en dificultad media', () => {
+    const game = createGame();
+    boardWithThreeInARow(game.board, PLAYER_2, [4, 5, 6]);
+    game.turn = PLAYER_2;
+    const column = chooseMove(game, 'medio', () => 0);
+    expect(column).toBe(3);
+  });
+
+  it('bloquea la victoria inmediata del rival también en dificultad media', () => {
+    const game = createGame();
+    boardWithThreeInARow(game.board, PLAYER_1, [0, 1, 2]);
+    boardWithThreeInARow(game.board, PLAYER_2, [4, 5]);
+    game.turn = PLAYER_2;
+    const column = chooseMove(game, 'medio', () => 0);
+    expect(column).toBe(3);
+  });
+
+  it('fuerza una victoria en dos jugadas en dificultad difícil', () => {
+    const game = createGame();
+    // El bot tiene dos bolitas separadas por un hueco (columnas 2 y 4): jugar
+    // la columna 3 crea un tres en raya abierto por ambos extremos que el
+    // rival no puede tapar por completo (solo bloquea un lado)
+    boardWithThreeInARow(game.board, PLAYER_2, [2]);
+    boardWithThreeInARow(game.board, PLAYER_2, [4]);
+    boardWithThreeInARow(game.board, PLAYER_1, [0]);
+    boardWithThreeInARow(game.board, PLAYER_1, [6]);
+    game.turn = PLAYER_2;
+    const column = chooseMove(game, 'dificil', () => 0);
+    expect(column).toBe(3);
+  });
+
   it('elige el centro en un tablero vacío en dificultad difícil', () => {
     const game = createGame();
     game.turn = PLAYER_2;

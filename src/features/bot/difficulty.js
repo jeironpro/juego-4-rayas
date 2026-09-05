@@ -7,11 +7,12 @@ export const DIFFICULTY_LABELS = {
   dificil: 'Difícil',
 };
 
-// Profundidad de búsqueda minimax por nivel (fácil es codicioso)
+// Profundidad de búsqueda negamax por nivel (fácil es codicioso y el medio
+// busca unas pocas jugadas; difícil explora el tablero casi por completo)
 export const DIFFICULTY_DEPTHS = {
   facil: 1,
-  medio: 3,
-  dificil: 5,
+  medio: 5,
+  dificil: 8,
 };
 
 export const DEFAULT_DIFFICULTY = 'dificil';
