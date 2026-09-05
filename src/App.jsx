@@ -1,11 +1,22 @@
+import { useState } from 'react';
+import HomeScreen from '@/features/menu/HomeScreen.jsx';
+import GameScreen from '@/features/game/GameScreen.jsx';
 import './App.css';
 
-// Aplicación raíz: por ahora muestra la portada del juego
+// Aplicación raíz: alterna entre la pantalla de inicio y la partida configurada
 function App() {
+  const [settings, setSettings] = useState(null);
+
+  if (settings === null) {
+    return <HomeScreen onStart={(mode, difficulty) => setSettings({ mode, difficulty })} />;
+  }
+
   return (
-    <main className="app">
-      <h1 className="app__title">4 en Raya</h1>
-    </main>
+    <GameScreen
+      mode={settings.mode}
+      difficulty={settings.difficulty}
+      onMenu={() => setSettings(null)}
+    />
   );
 }
 
