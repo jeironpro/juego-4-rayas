@@ -1,0 +1,76 @@
+/* Marcador superior de la partida */
+.scoreboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg) var(--spacing-xxl);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  min-width: min(24rem, 100%);
+}
+
+.scoreboard__badge-row {
+  display: flex;
+  justify-content: center;
+}
+
+.scoreboard__badge {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-subtle);
+  color: var(--color-primary);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.scoreboard__names {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+}
+
+.scoreboard__name {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.2s ease;
+}
+
+.scoreboard__name--active {
+  color: var(--color-text-primary);
+}
+
+.scoreboard__counts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.scoreboard__count {
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1;
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
+}
+
+.scoreboard__count--active {
+  color: var(--color-primary);
+  text-shadow: 0 0 18px rgb(79 140 255 / 0.45);
+}
+
+.scoreboard__vs {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}

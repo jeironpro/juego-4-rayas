@@ -1,0 +1,21 @@
+/* Pantalla de partida: marcador, tablero y acciones */
+.game-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-xxl) var(--spacing-xl);
+}
+
+.game-screen__status {
+  min-height: 1.5rem;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-label);
+}
+
+.game-screen__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-md);
+}

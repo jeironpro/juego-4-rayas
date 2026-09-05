@@ -19,9 +19,10 @@ function listBalls(board) {
 
 // Tablero de 4 en raya: panel frontal con huecos, capa de bolitas detrás
 // (z-index menor al tablero) y botones por columna para soltar bolitas
-function Board({ board, winningLine = [], disabled = false, onDrop }) {
-  const isWinningCell = (row, col) =>
-    winningLine.some((cell) => cell.row === row && cell.col === col);
+function Board({ board, winningLine, disabled = false, onDrop }) {
+  // tolera winningLine null cuando la partida aún no terminó
+  const line = winningLine ?? [];
+  const isWinningCell = (row, col) => line.some((cell) => cell.row === row && cell.col === col);
 
   return (
     <div className="board">
