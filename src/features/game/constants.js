@@ -10,8 +10,8 @@ export const PLAYER_2 = 'player2';
 
 // Direcciones para detectar victorias: horizontal, vertical y diagonales
 export const DIRECTIONS = [
-  { row: 0, col: 1 },
-  { row: 1, col: 0 },
-  { row: 1, col: 1 },
-  { row: 1, col: -1 },
+    { row: 0, col: 1 },
+    { row: 1, col: 0 },
+    { row: 1, col: 1 },
+    { row: 1, col: -1 },
 ];

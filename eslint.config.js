@@ -5,29 +5,29 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 
 // Configuración base generada por Vite, extendida con reglas del proyecto
 export default [
-  { ignores: ['dist', 'coverage'] },
-  {
-    files: ['**/*.{js,jsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
-      },
+    { ignores: ['dist', 'coverage'] },
+    {
+        files: ['**/*.{js,jsx}'],
+        languageOptions: {
+            ecmaVersion: 2020,
+            globals: globals.browser,
+            parserOptions: {
+                ecmaVersion: 'latest',
+                ecmaFeatures: { jsx: true },
+                sourceType: 'module',
+            },
+        },
+        plugins: {
+            'react-hooks': reactHooks,
+            'react-refresh': reactRefresh,
+        },
+        rules: {
+            ...js.configs.recommended.rules,
+            ...reactHooks.configs.recommended.rules,
+            'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+            'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+            'no-var': 'error',
+            eqeqeq: ['error', 'smart'],
+        },
     },
-    plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-    },
-    rules: {
-      ...js.configs.recommended.rules,
-      ...reactHooks.configs.recommended.rules,
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
-      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-      'no-var': 'error',
-      eqeqeq: ['error', 'smart'],
-    },
-  },
 ];

@@ -1,140 +1,140 @@
 /* Tablero de 4 en raya. La celda es adaptativa y define el resto de medidas */
 .board {
-  --cell: clamp(2.5rem, calc((100vw - 2rem) / 7), 4.75rem);
-  --frame: calc(var(--cell) * 0.28);
-  --ball-size: calc(var(--cell) * 0.84);
-  position: relative;
-  width: calc(var(--cell) * 7 + var(--frame) * 2);
-  height: calc(var(--cell) * 6 + var(--frame) * 2);
-  padding: var(--frame);
-  background-color: var(--color-board-frame);
-  border-radius: calc(var(--cell) * 0.35);
-  box-shadow: var(--shadow-lg);
+    --cell: clamp(2.5rem, calc((100vw - 2rem) / 7), 4.75rem);
+    --frame: calc(var(--cell) * 0.28);
+    --ball-size: calc(var(--cell) * 0.84);
+    position: relative;
+    width: calc(var(--cell) * 7 + var(--frame) * 2);
+    height: calc(var(--cell) * 6 + var(--frame) * 2);
+    padding: var(--frame);
+    background-color: var(--color-board-frame);
+    border-radius: calc(var(--cell) * 0.35);
+    box-shadow: var(--shadow-lg);
 }
 
 /* Interior oscuro de los huecos, visible a través de las bolitas */
 .board__back {
-  position: absolute;
-  inset: var(--frame);
-  z-index: 1;
-  background-color: var(--color-board-hole);
+    position: absolute;
+    inset: var(--frame);
+    z-index: 1;
+    background-color: var(--color-board-hole);
 }
 
 /* Capa de bolitas: detrás del panel frontal, por lo que su z-index es menor al tablero */
 .board__balls {
-  position: absolute;
-  inset: var(--frame);
-  z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(7, var(--cell));
-  grid-template-rows: repeat(6, var(--cell));
-  overflow: visible;
+    position: absolute;
+    inset: var(--frame);
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(7, var(--cell));
+    grid-template-rows: repeat(6, var(--cell));
+    overflow: visible;
 }
 
 /* Panel frontal: recorta un hueco circular por celda usando una máscara CSS */
 .board__front {
-  position: absolute;
-  inset: var(--frame);
-  z-index: 3;
-  background-color: var(--color-board-frame);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 0 87%, #000 88%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 0 87%, #000 88%);
-  -webkit-mask-size: var(--cell) var(--cell);
-  mask-size: var(--cell) var(--cell);
+    position: absolute;
+    inset: var(--frame);
+    z-index: 3;
+    background-color: var(--color-board-frame);
+    -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 0 87%, #000 88%);
+    mask-image: radial-gradient(circle closest-side at center, transparent 0 87%, #000 88%);
+    -webkit-mask-size: var(--cell) var(--cell);
+    mask-size: var(--cell) var(--cell);
 }
 
 /* Línea de victoria: tacha las bolitas ganadoras pasando por el centro.
    Se dibuja sobre el panel frontal para verse de forma continua */
 .board__strike {
-  position: absolute;
-  inset: var(--frame);
-  z-index: 4;
-  width: calc(var(--cell) * 7);
-  height: calc(var(--cell) * 6);
-  overflow: visible;
-  pointer-events: none;
+    position: absolute;
+    inset: var(--frame);
+    z-index: 4;
+    width: calc(var(--cell) * 7);
+    height: calc(var(--cell) * 6);
+    overflow: visible;
+    pointer-events: none;
 }
 
 .board__strike line {
-  stroke: var(--color-strike);
-  stroke-width: 0.18;
-  stroke-linecap: round;
-  filter: drop-shadow(0 0 6px rgb(255 255 255 / 0.55));
+    stroke: var(--color-strike);
+    stroke-width: 0.18;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 6px rgb(255 255 255 / 0.55));
 }
 
 /* Botones invisibles por columna: reciben el clic para soltar la bolita.
    Se alinean con la cuadrícula de huecos (inset del marco) para que el
    área resaltada al pasar el cursor quede centrada en cada columna */
 .board__columns {
-  position: absolute;
-  inset: var(--frame);
-  z-index: 4;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+    position: absolute;
+    inset: var(--frame);
+    z-index: 4;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
 }
 
 .board__column {
-  border: 0;
-  padding: 0;
-  background: transparent;
-  cursor: pointer;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
 }
 
 .board__column:hover:not(:disabled) {
-  background-color: rgb(255 255 255 / 0.04);
+    background-color: rgb(255 255 255 / 0.04);
 }
 
 /* Bolita: se ancla a su celda y cae desde arriba al montarse */
 .board__ball {
-  width: var(--ball-size);
-  height: var(--ball-size);
-  border: 10px solid var(--color-ball-border);
-  border-radius: 50%;
-  align-self: center;
-  justify-self: center;
-  animation-name: board-ball-drop;
-  animation-duration: calc(0.4s + var(--ball-row) * 0.12s);
-  animation-timing-function: cubic-bezier(0.5, 0, 0.8, 0.35);
-  animation-fill-mode: forwards;
+    width: var(--ball-size);
+    height: var(--ball-size);
+    border: 10px solid var(--color-ball-border);
+    border-radius: 50%;
+    align-self: center;
+    justify-self: center;
+    animation-name: board-ball-drop;
+    animation-duration: calc(0.4s + var(--ball-row) * 0.12s);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.8, 0.35);
+    animation-fill-mode: forwards;
 }
 
 .board__ball--player1 {
-  background-color: var(--color-ball-player-1);
+    background-color: var(--color-ball-player-1);
 }
 
 .board__ball--player2 {
-  background-color: var(--color-ball-player-2);
+    background-color: var(--color-ball-player-2);
 }
 
 /* La bolita ganadora se resalta con un brillo blanco */
 .board__ball--winner {
-  box-shadow:
-    0 0 0 3px rgb(255 255 255 / 0.85),
-    0 0 18px 4px rgb(255 255 255 / 0.5);
+    box-shadow:
+        0 0 0 3px rgb(255 255 255 / 0.85),
+        0 0 18px 4px rgb(255 255 255 / 0.5);
 }
 
 /* Caída: arranca encima del tablero (el 15% inferior dentro del tablero) y
    desciende hasta quedar centrada en su celda */
 @keyframes board-ball-drop {
-  from {
-    transform: translateY(
-      calc(
-        -1 *
-          (
-            0.85 * var(--ball-size) + var(--ball-row) * var(--cell) +
-              (var(--cell) - var(--ball-size)) / 2
-          )
-      )
-    );
-  }
-  to {
-    transform: translateY(0);
-  }
+    from {
+        transform: translateY(
+            calc(
+                -1 *
+                    (
+                        0.85 * var(--ball-size) + var(--ball-row) * var(--cell) +
+                            (var(--cell) - var(--ball-size)) / 2
+                    )
+            )
+        );
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
 /* Usuarios que prefieren menos movimiento: caída instantánea */
 @media (prefers-reduced-motion: reduce) {
-  .board__ball {
-    animation-duration: 0.01s;
-  }
+    .board__ball {
+        animation-duration: 0.01s;
+    }
 }
